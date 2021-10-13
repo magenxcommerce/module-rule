@@ -1,15 +1,9 @@
 {
     "name": "magenxcommerce/module-rule",
     "description": "N/A",
-    "type": "magento2-module",
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
-    ],
     "config": {
         "sort-packages": true
     },
-    "version": "100.4.0",
     "require": {
         "php": "~7.3.0||~7.4.0",
         "lib-libxml": "*",
@@ -19,6 +13,11 @@
         "magento/module-eav": "102.1.*",
         "magento/module-store": "101.1.*"
     },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
     "autoload": {
         "files": [
             "registration.php"
@@ -26,5 +25,6 @@
         "psr-4": {
             "Magento\\Rule\\": ""
         }
-    }
+    },
+    "version": "100.4.0"
 }
