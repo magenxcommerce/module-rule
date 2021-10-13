@@ -95,8 +95,8 @@ abstract class AbstractProduct extends \Magento\Rule\Model\Condition\AbstractCon
      * @param \Magento\Catalog\Model\ResourceModel\Product $productResource
      * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute\Set\Collection $attrSetCollection
      * @param \Magento\Framework\Locale\FormatInterface $localeFormat
-     * @param array $data
      * @param ProductCategoryList|null $categoryList
+     * @param array $data
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
@@ -514,10 +514,6 @@ abstract class AbstractProduct extends \Magento\Rule\Model\Condition\AbstractCon
             ) ? $this->_localeFormat->getNumber(
                 $arr['is_value_parsed']
             ) : false;
-        } elseif (!empty($arr['operator']) && $arr['operator'] == '()') {
-            if (isset($arr['value'])) {
-                $arr['value'] = preg_replace('/\s*,\s*/', ',', $arr['value']);
-            }
         }
 
         return parent::loadArray($arr);
@@ -625,8 +621,6 @@ abstract class AbstractProduct extends \Magento\Rule\Model\Condition\AbstractCon
             $mappedSqlField = $this->getEavAttributeTableAlias() . '.value';
         } elseif ($this->getAttribute() == 'category_ids') {
             $mappedSqlField = 'e.entity_id';
-        } elseif ($this->getAttribute() == 'attribute_set_id') {
-            $mappedSqlField = 'e.attribute_set_id';
         } else {
             $mappedSqlField = parent::getMappedSqlField();
         }
@@ -701,7 +695,6 @@ abstract class AbstractProduct extends \Magento\Rule\Model\Condition\AbstractCon
 
     /**
      * Correct '==' and '!=' operators
-     *
      * Categories can't be equal because product is included categories selected by administrator and in their parents
      *
      * @return string
